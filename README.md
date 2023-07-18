@@ -2,7 +2,8 @@
 
 ## How to install llvm on ubuntu
 https://apt.llvm.org/
-it supports llvm 14
+
+The language compiles with the support of llvm 14
 
 ## Compile the lang
 ```
@@ -18,7 +19,7 @@ extern putchard(char);
 
 lenadefines printstar(n)
   lenarepeat i = 1, i < n, 1.0 in
-    putchard(42);  # ascii 42 = '*'
+    putchard(42);  
 
 lenadefines fib(x)
   lenaif x < 3 lenathen
@@ -26,7 +27,6 @@ lenadefines fib(x)
   lenaelse
     fib(x-1)+fib(x-2);
 
-# print 100 '*' characters
 printstar(100);
 fib(2);
 fib(4);
