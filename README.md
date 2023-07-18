@@ -2,6 +2,7 @@
 
 ## How to install llvm on ubuntu
 https://apt.llvm.org/
+it supports llvm 14
 
 ## Compile the lang
 ```
@@ -11,9 +12,10 @@ clang++ -Xlinker --export-dynamic -g lena.cpp `llvm-config --cxxflags --ldflags 
 ```
 
 ## Create the code 
-source.lena
+code_example.lena
 ```
 extern putchard(char);
+
 lenadefines printstar(n)
   lenarepeat i = 1, i < n, 1.0 in
     putchard(42);  # ascii 42 = '*'
