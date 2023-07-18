@@ -94,17 +94,17 @@ static int gettok() {
     while (isalnum((LastChar = getCharSources())))
       IdentifierStr += LastChar;
 
-    if (IdentifierStr == "def")
+    if (IdentifierStr == "lenadefines")
       return tok_def;
     if (IdentifierStr == "extern")
       return tok_extern;
-    if (IdentifierStr == "if")
+    if (IdentifierStr == "lenaif")
       return tok_if;
-    if (IdentifierStr == "then")
+    if (IdentifierStr == "lenathen")
       return tok_then;
-    if (IdentifierStr == "else")
+    if (IdentifierStr == "lenaelse")
       return tok_else;
-    if (IdentifierStr == "for")
+    if (IdentifierStr == "lenarepeat")
       return tok_for;
     if (IdentifierStr == "in")
       return tok_in;
@@ -872,7 +872,7 @@ static void InitializeModuleAndPassManager() {
 static void HandleDefinition() {
   if (auto FnAST = ParseDefinition()) {
     if (auto *FnIR = FnAST->codegen()) {
-      fprintf(stderr, "Read function definition:");
+      //fprintf(stderr, "Read function definition:");
       FnIR->print(errs());
       fprintf(stderr, "\n");
       ExitOnErr(TheJIT->addModule(
@@ -888,7 +888,7 @@ static void HandleDefinition() {
 static void HandleExtern() {
   if (auto ProtoAST = ParseExtern()) {
     if (auto *FnIR = ProtoAST->codegen()) {
-      fprintf(stderr, "Read extern: ");
+      //fprintf(stderr, "Read extern: ");
       FnIR->print(errs());
       fprintf(stderr, "\n");
       FunctionProtos[ProtoAST->getName()] = std::move(ProtoAST);
@@ -917,7 +917,9 @@ static void HandleTopLevelExpression() {
       // Get the symbol's address and cast it to the right type (takes no
       // arguments, returns a double) so we can call it as a native function.
       double (*FP)() = (double (*)())(intptr_t)ExprSymbol.getAddress();
-      fprintf(stderr, "Evaluated to %f\n", FP());
+      if (FP()>0) {
+        fprintf(stderr, "\nLena shows you the result: %f\n", FP());
+      }
 
       // Delete the anonymous expression module from the JIT.
       ExitOnErr(RT->remove());

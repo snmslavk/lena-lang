@@ -14,14 +14,14 @@ clang++ -Xlinker --export-dynamic -g lena.cpp `llvm-config --cxxflags --ldflags 
 source.lena
 ```
 extern putchard(char);
-def printstar(n)
-  for i = 1, i < n, 1.0 in
+lenadefines printstar(n)
+  lenarepeat i = 1, i < n, 1.0 in
     putchard(42);  # ascii 42 = '*'
 
-def fib(x)
-  if x < 3 then
+lenadefines fib(x)
+  lenaif x < 3 lenathen
     1
-  else
+  lenaelse
     fib(x-1)+fib(x-2);
 
 # print 100 '*' characters
