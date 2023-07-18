@@ -1,5 +1,8 @@
 # The Lena Programming Langugage
 
+## How to install llvm on ubuntu
+https://apt.llvm.org/
+
 ## Compile the lang
 ```
 cd src
@@ -10,9 +13,8 @@ clang++ -g lena.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core 
 ## Create the code 
 source.lena
 ```
-def foo(a b) a*a + 2*a*b + b*b;
-def bar(a) foo(a, 4.0) + bar(31337);
-extern cos(x);
+def foo(x) x + 1;
+foo(2);
 ```
 
 ## Run 
