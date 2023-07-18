@@ -28,6 +28,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 using namespace llvm;
 using namespace llvm::orc;
@@ -55,8 +56,8 @@ static double NumVal;             // Filled in if tok_number
 static std::string sources;
 static int s_index = 0;
 
-static void readSource() {
-  std::ifstream file("source.lena");
+static void readSource(std::string path) {
+  std::ifstream file(path);
   if (file.is_open()) {
     std::stringstream buffer;
     buffer << file.rdbuf();
@@ -703,7 +704,13 @@ extern "C" DLLEXPORT double printd(double X) {
 // Main driver code.
 //===----------------------------------------------------------------------===//
 
-int main() {
+int main(int argc, char* argv[]) {
+  if (argc != 2) {
+      printf("\nYou need to define the source file "
+              "of lena programming language \n");
+      return 0;
+  }
+
   InitializeNativeTarget();
   InitializeNativeTargetAsmPrinter();
   InitializeNativeTargetAsmParser();
@@ -715,7 +722,7 @@ int main() {
   BinopPrecedence['-'] = 20;
   BinopPrecedence['*'] = 40; // highest.
 
-  readSource();
+  readSource(argv[1]);
 
   // Prime the first token.
   //fprintf(stderr, "ready> ");

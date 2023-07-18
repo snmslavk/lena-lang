@@ -19,5 +19,5 @@ foo(2);
 
 ## Run 
 ```
-./lena
+./lena source.lena
 ```
