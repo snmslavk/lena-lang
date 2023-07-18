@@ -4,7 +4,7 @@
 ```
 cd src
 
-clang++ -g -O3 lena.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core` -o lena
+clang++ -g lena.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core orcjit native` -O3 -o lena
 ```
 
 ## Create the code 
