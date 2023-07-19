@@ -1,16 +1,6 @@
 # The Lena Programming Langugage
 
-## How to install llvm on ubuntu
-https://apt.llvm.org/
-
-The language compiles with the support of llvm 14
-
-## Compile the lang
-```
-cd src
-
-clang++ -Xlinker --export-dynamic -g lena.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core orcjit native` -O3 -o lena
-```
+The language supports converting to IR, using JIT, and all features of LLVM.
 
 ## Create the code 
 code_example.lena
@@ -36,5 +26,21 @@ fib(6);
 
 ## Run 
 ```
-./lena source.lena
+./lena code_example.lena
+```
+## Try it 
+You can take the prebuild binaries from the Release
+
+Or you can compile it by youself
+
+## How to install llvm on ubuntu
+https://apt.llvm.org/
+
+The language compiles with the support of llvm 14
+
+## Compile the lang
+```
+cd src
+
+clang++ -Xlinker --export-dynamic -g lena.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core orcjit native` -O3 -o lena
 ```
